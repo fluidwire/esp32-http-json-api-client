@@ -1,0 +1,30 @@
+// config.h.example - copy this file to config.h and fill in your own values.
+// config.h is .gitignore'd so your secrets never leave your machine.
+
+#pragma once
+
+// --- WiFi -------------------------------------------------------------------
+#define WIFI_SSID      "your-wifi-ssid"
+#define WIFI_PASSWORD  "your-wifi-password"
+
+// --- API --------------------------------------------------------------------
+// Default: Open-Meteo current weather for Manila (free, no API key).
+// Change latitude/longitude to your location.
+#define API_HOST  "api.open-meteo.com"
+#define API_URL   "https://api.open-meteo.com/v1/forecast?latitude=14.5995&longitude=120.9842&current=temperature_2m,relative_humidity_2m,wind_speed_10m"
+
+// Poll interval in milliseconds. Be polite to free APIs: 60000 (1 min) or more.
+#define POLL_INTERVAL_MS  60000
+
+// --- TLS --------------------------------------------------------------------
+// Paste the ROOT certificate of the API server here (PEM). See the README
+// section "Getting the root CA" for the openssl command.
+// Leave as-is and set ALLOW_INSECURE_TLS to 1 ONLY for quick bench testing.
+#define API_ROOT_CA \
+"-----BEGIN CERTIFICATE-----\n" \
+"PASTE-YOUR-ROOT-CA-BASE64-LINES-HERE\n" \
+"-----END CERTIFICATE-----\n"
+
+// 0 = validate the server certificate against API_ROOT_CA (recommended)
+// 1 = skip validation (testing only - never ship this)
+#define ALLOW_INSECURE_TLS  0
